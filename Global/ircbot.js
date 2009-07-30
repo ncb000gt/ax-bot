@@ -9,7 +9,7 @@ var ircbot = {
 		    app.log('Found: ' +channel);
 		    app.log('Logging - ' + sender +': ' +message);
 		    var time = new Date().format('yyyyMMdd-hhmmss');
-		    var log = this.logChannels[channel];
+		    var log = this.logChannels[channel.replace('#','')];
 		    spp.log('logid: ' + log.id);
 		    log.content += ((!(log.content) || log.content == '')?'\n':'') +
 			time + ' ' + sender + ': ' + message;
@@ -32,7 +32,7 @@ var ircbot = {
 		    l.id = time;
 		    lb.add(l);
 
-		    this.logChannels[channel] = l;
+		    this.logChannels['#'+channel] = l;
 		}
 
 		/*app.log('key: -'+key+'-');
