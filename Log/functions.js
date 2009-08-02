@@ -6,5 +6,4 @@ function log_line(line) {
 	val = this.stream + '\n' + line;
     }
     this.stream = val;
-    app.log('wrote to log: ' +this.stream);
 }

@@ -1,0 +1,4 @@
+<prototypes>
+  <prototype name="Homepage" displayname="Home Page" editable="true" addable="false" deletable="false" />
+  <prototype name="Bot" displayname="Bot" editable="true" addable="true" deletable="true" />
+</prototypes>

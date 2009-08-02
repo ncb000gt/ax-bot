@@ -46,6 +46,15 @@ function join_setup(channel, key, params) {
     }
 }
 
+/**
+ * Send message, set on a per bot basis.
+ *
+ * Substitutions:
+ * {0} - channel
+ * {1} - sender
+ * {2} - login
+ * {3} - hostname
+ */
 function on_join_message(channel, sender, login, hostname) {
-    this.sendMessage(sender, "Welcome to "+ channel+", this channel is being logged.");
+    this.sendNotice(sender, this.bot.on_join_notice.replace('{0}', channel).replace('{1}', sender).replace('{2}', login).replace('{3}', hostname));
 }

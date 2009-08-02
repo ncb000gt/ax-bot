@@ -1,0 +1,3 @@
+<head xmlns:tal="http://axiomstack.com/tale" tal:var="home: root.get('home')">
+  <title tal:content="home.title"> </title>
+</head>

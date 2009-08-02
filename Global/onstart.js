@@ -1,4 +1,5 @@
 function init() {
+    app.log('--- init ---');
     var hp = root.get('home');
     if (!hp) {
 	hp = new Homepage();
@@ -20,21 +21,17 @@ function init() {
 		</server>
 	    </servers>
 	    </>;
+	first_bot.on_join_notice = "Welcome, {1}, to {0}. This channel is being logged by AxBot by ncb000gt.";
 	hp.add(first_bot);
     }
-
-    res.commit();
 }
 
 function start() {
+    app.log('--- start ---');
     ircbot.onMessageFunctions.push(log_message);
     ircbot.onJoinFunctions.push(on_join_message);
     ircbot.joinFunctions.push(join_setup);
 
-    startBots();
-}
-
-function startBots() {
     for each(var bot in app.getObjects('Bot')) {
 	var ibot = new ircbot.create(bot);
 	ibot.setName(bot.name);
