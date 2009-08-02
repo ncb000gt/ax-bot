@@ -24,6 +24,12 @@ function init() {
     }
 
     res.commit();
+}
+
+function start() {
+    ircbot.onMessageFunctions.push(log_message);
+    ircbot.onJoinFunctions.push(on_join_message);
+    ircbot.joinFunctions.push(join_setup);
 
     startBots();
 }
@@ -35,7 +41,7 @@ function startBots() {
 	for each (var server in bot.servers..server) {
 	    ibot.connect(server.@domain);
 	    for each(var channel in server..channel) {
-		ibot.joinChannel(channel.text(), channel.@key, (channel.@log == 'true'));
+		ibot.joinChannel(channel.text(), channel.@key, {log:(channel.@log == 'true')});
 	    }
 	}
     }
