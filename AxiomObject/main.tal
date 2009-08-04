@@ -2,10 +2,8 @@
   <head tal:replace="this.html_header(data)"> </head>
   <body>
     <div class="content">
-      <div>
-	<h1 tal:content="this.title"> </h1>
-      </div>
-      <div tal:replace="data.content || this.content || 'No Content Found'"></div>
+      <div tal:replace="this.body_header(data)"> </div>
+      <div tal:content="data.content || ((this.body)?this.body(data):(this.content||'No Content Found'))"></div>
     </div>
   </body>
 </html>

@@ -7,3 +7,7 @@ function log_line(line) {
     }
     this.stream = val;
 }
+
+function get_stream() {
+    return new XHTML(this.stream.replace(/\n/g, '<br />'));
+}

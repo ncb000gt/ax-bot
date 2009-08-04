@@ -1,3 +1,5 @@
 <head xmlns:tal="http://axiomstack.com/tale" tal:var="home: root.get('home')">
-  <title tal:content="home.title"> </title>
+  <title tal:content="home.title || this.id"> </title>
+  <meta name="keywords" tal:attr="content: this.meta_keywords" />
+  <meta name="description" tal:attr="content: this.meta_description" />
 </head>
