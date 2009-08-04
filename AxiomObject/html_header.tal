@@ -2,4 +2,5 @@
   <title tal:content="home.title || this.id"> </title>
   <meta name="keywords" tal:attr="content: this.meta_keywords" />
   <meta name="description" tal:attr="content: this.meta_description" />
+  <link href="/static/css/core.css" rel="stylesheet" media="screen" type="text/css" />
 </head>

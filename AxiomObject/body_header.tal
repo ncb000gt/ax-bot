@@ -1,3 +1,9 @@
 <div xmlns:tal="http://axiomstack.com/tale">
-  <h1 tal:content="this.title || this.id"> </h1>
+  <div class="header">
+    <h1 tal:content="this.title || this.id"> </h1>
+  </div>
+  <ul class="breadcrumbs" tal:var="crumbs: this.breadcrumbs()" tal:repeat-content="crumb: crumbs">
+    <li><a tal:attr="href: crumb.getURI()" tal:content="crumb.title||crumb.id"></a></li>
+    <li tal:if="repeat.crumb.index != (crumbs.length - 1)">&gt;</li>
+  </ul>
 </div>

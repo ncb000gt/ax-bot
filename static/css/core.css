@@ -1,0 +1,7 @@
+body{font-family:sans-serif;font-size:86%;}
+a{color:#aeab57;}
+.header{color:#b2e89c;border-bottom:2px dotted #aeab57;}
+.content{width:75%;margin:0 auto;border:2px dotted #aeab57;color:#b2e89c;}
+.stream{background:#aaa;padding:10px;}
+.breadcrumbs li{padding:0;margin:0;list-style:none;float:left;}
+.breadcrumbs{padding:0;margin:0;overflow:hidden;}
