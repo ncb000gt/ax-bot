@@ -9,20 +9,23 @@ function init() {
 	root.add(hp);
     }
 
-    var first_bot = hp.get('first_bot');
-    if (!first_bot) {
-	first_bot = new Bot();
-	first_bot.name = 'first_bot';
-	first_bot.password = 'test';
-	first_bot.servers = <>
-	    <servers>
+    var bot_count = app.getHitCount('Bot');
+    if (bot_count === 0) {
+	var first_bot = hp.get('first_bot');
+	if (!first_bot) {
+	    first_bot = new Bot();
+	    first_bot.name = 'first_bot';
+	    first_bot.password = 'test';
+	    first_bot.servers = <>
+		<servers>
 		<server domain="irc.freenode.net">
-		    <channel log="true">axiomstack</channel>
+		<channel log="true">axiomstack</channel>
 		</server>
-	    </servers>
-	    </>;
-	first_bot.on_join_notice = "Welcome, {1}, to {0}. This channel is being logged by AxBot. Created by ncb000gt.";
-	hp.add(first_bot);
+		</servers>
+		</>;
+	    first_bot.on_join_notice = "Welcome, {1}, to {0}. This channel is being logged by AxBot. Created by ncb000gt.";
+	    hp.add(first_bot);
+	}
     }
 }
 

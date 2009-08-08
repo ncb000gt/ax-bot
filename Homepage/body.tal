@@ -1,6 +1,0 @@
-<div xmlns:tal="http://axiomstack.com/tale">
-  <h2>Bots</h2>
-  <ul>
-    <li tal:repeat="bot: app.getHits('Bot').objects(0,10)"><a tal:attr="href: bot.getURI()" tal:content="bot.title"></a></li>
-  </ul>
-</div>

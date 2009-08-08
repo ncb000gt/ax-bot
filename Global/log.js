@@ -1,33 +1,39 @@
-var log_queue = [];
+var log_queue = {};
 var logChannels = {};
 
 function process_queue() {
-    for each(var entry in log_queue) {
-	var l = app.getObjects('Log', {id: entry.id})[0];
-	if (!(l)){
-	    app.log('No Log object found.');
-	    app.log('Data: '+entry.toSource());
+    for (var key in log_queue) {
+	var entries = log_queue[key];
+	for each (var entry in entries) {
+	    for each(var log_id in entry.id) {
+		var l = app.getObjects('Log', {id: log_id})[0];
+		if (!(l)){
+		    app.log('No Log object found.');
+		    app.log('Data: '+entry.toSource());
+		}
+		l.log_line(entry.line);
+	    }
 	}
-	l.log_line(entry.line);
-
-	log_queue.remove(entry);
     }
 }
 
 function log_message(channel, sender, login, hostname, message) {
     if (channel in logChannels) {
 	var time = new Date().format('yyyy/MM/dd hh:mm:ss');
-	log_queue.push(
-	    {
-		id: logChannels[channel],
-		line: time + ' ' + sender + ': ' + message
-	    }
-	);
+	var data = {
+	    id: logChannels[channel],
+	    line: time + ' ' + sender + ': ' + message
+	};
+	if (!(channel in log_queue)){
+	    log_queue[channel] = [data];
+	} else {
+	    log_queue[channel].push(data);
+	}
     }
 }
 
 function join_setup(channel, key, params) {
-    var time = new Date().format('yyyy/MM/dd hh:mm:ss');
+    var time = new Date().format('yyyyMMdd-hh:mm:ss');
     var server = this.getServer();
     if (params.log) {
 	var lb = this.bot.get(server+'-'+channel);
@@ -42,7 +48,11 @@ function join_setup(channel, key, params) {
 	l.stream = '';
 	lb.add(l);
 
-	logChannels['#'+channel] = l.id;
+	if (!(('#'+channel) in logChannels)) {
+	    logChannels['#'+channel] = [l.id];
+	} else {
+	    logChannels['#'+channel].push(l.id);
+	}
     }
 }
 
@@ -64,4 +74,5 @@ function on_join_message(channel, sender, login, hostname) {
 	    .replace(/{2}/g, login)
 	    .replace(/{3}/g, hostname)
     );
+    log_message(channel, sender, login, hostname, '(n='+login+"@" + hostname +") has joined" + channel);
 }
