@@ -40,7 +40,7 @@ function start() {
 	for each (var server in bot.servers..server) {
 	    ibot.connect(server.@domain);
 	    if (bot.password) {
-		bot.identify(bot.password);
+		ibot.identify(bot.password);
 	    }
 	    for each(var channel in server..channel) {
 		ibot.joinChannel(channel.text(), channel.@key, {log:(channel.@log == 'true')});
