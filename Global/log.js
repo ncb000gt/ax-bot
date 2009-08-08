@@ -6,7 +6,7 @@ function process_queue() {
 	var entries = log_queue[key];
 	for each (var entry in entries) {
 	    for each(var log_id in entry.id) {
-		var l = app.getObjects('Log', {id: log_id})[0];
+		var l = app.getObjects('Log', {id: log_id}, {path: '/home'})[0];
 		if (!(l)){
 		    app.log('No Log object found.');
 		    app.log('Data: '+entry.toSource());

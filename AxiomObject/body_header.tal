@@ -1,5 +1,6 @@
 <div xmlns:tal="http://axiomstack.com/tale">
   <div class="header">
+    <img src="/static/images/logo.png" title="AxBot" alt="AxBot" />
     <h1 tal:content="this.title || this.id"> </h1>
   </div>
   <ul class="breadcrumbs" tal:var="crumbs: this.breadcrumbs()" tal:repeat-content="crumb: crumbs">
