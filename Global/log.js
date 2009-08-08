@@ -3,6 +3,7 @@ var logChannels = {};
 
 function process_queue() {
     for (var key in log_queue) {
+	var to_remove = [];
 	var entries = log_queue[key];
 	for each (var entry in entries) {
 	    for each(var log_id in entry.id) {
@@ -13,7 +14,12 @@ function process_queue() {
 		}
 		l.log_line(entry.line);
 	    }
-	    log_queue[key].remove(entry); //will remove newly duplicated information, but repeats tend to be bad anyway.
+	    to_remove.push(entry);
+	}
+
+	//will remove newly duplicated information, but repeats tend to be bad anyway.
+	for each(var o in to_remove) {
+	    log_queue[key].remove(o);
 	}
     }
 }
@@ -34,7 +40,7 @@ function log_message(channel, sender, login, hostname, message) {
 }
 
 function join_setup(channel, key, params) {
-    var time = new Date().format('yyyyMMdd-hh:mm:ss');
+    var time = new Date().format('yyyyMMdd-hhmmss');
     var server = this.getServer();
     if (params.log) {
 	var lb = this.bot.get(server+'-'+channel);
