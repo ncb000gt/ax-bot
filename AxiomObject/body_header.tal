@@ -1,6 +1,15 @@
 <div xmlns:tal="http://axiomstack.com/tale">
   <div class="header">
     <img src="/static/images/logo.png" title="AxBot" alt="AxBot" />
+    <form class="search_form" name="search" method="GET" action="/search">
+      <fieldset>
+	<label for="q" id="search_label" class="hide">Search</label>
+	<input type="text" name="q" id="q" tal:attr="value: (req.get('q') || 'Search')" onfocus="if (this.value=='Search') this.value='';" onblur="if (this.value=='') this.value='Search';"/>
+      </fieldset>
+      <fieldset>
+	<input type="submit" id="search_submit" value="Search" class="search_submit" />
+      </fieldset>
+    </form>
     <h1 tal:content="this.title || this.id"> </h1>
   </div>
   <ul class="breadcrumbs" tal:var="crumbs: this.breadcrumbs()" tal:repeat-content="crumb: crumbs">

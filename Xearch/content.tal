@@ -1,0 +1,2 @@
+<div xmlns:tal="http://axiomstack.com/tale" tal:content="this.getSearchResults()">
+</div>
