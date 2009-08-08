@@ -1,5 +1,4 @@
 function init() {
-    app.log('--- init ---');
     var hp = root.get('home');
     if (!hp) {
 	hp = new Homepage();
@@ -30,7 +29,6 @@ function init() {
 }
 
 function start() {
-    app.log('--- start ---');
     ircbot.onMessageFunctions.push(log_message);
     ircbot.onJoinFunctions.push(on_join_message);
     ircbot.joinFunctions.push(join_setup);
@@ -38,8 +36,12 @@ function start() {
     for each(var bot in app.getObjects('Bot')) {
 	var ibot = new ircbot.create(bot);
 	ibot.setName(bot.name);
+	ibot.setLogin('AxBot');
 	for each (var server in bot.servers..server) {
 	    ibot.connect(server.@domain);
+	    if (bot.password) {
+		bot.identify(bot.password);
+	    }
 	    for each(var channel in server..channel) {
 		ibot.joinChannel(channel.text(), channel.@key, {log:(channel.@log == 'true')});
 	    }
