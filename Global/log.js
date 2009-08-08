@@ -16,7 +16,7 @@ function process_queue() {
 
 function log_message(channel, sender, login, hostname, message) {
     if (channel in logChannels) {
-	var time = new Date().format('yyyyMMdd-hhmmss');
+	var time = new Date().format('yyyy/MM/dd hh:mm:ss');
 	log_queue.push(
 	    {
 		id: logChannels[channel],
@@ -27,7 +27,7 @@ function log_message(channel, sender, login, hostname, message) {
 }
 
 function join_setup(channel, key, params) {
-    var time = new Date().format('yyyyMMdd-hhmmss');
+    var time = new Date().format('yyyy/MM/dd hh:mm:ss');
     var server = this.getServer();
     if (params.log) {
 	var lb = this.bot.get(server+'-'+channel);
@@ -56,5 +56,12 @@ function join_setup(channel, key, params) {
  * {3} - hostname
  */
 function on_join_message(channel, sender, login, hostname) {
-    this.sendNotice(sender, this.bot.on_join_notice.replace('{0}', channel).replace('{1}', sender).replace('{2}', login).replace('{3}', hostname));
+    this.sendNotice(
+	sender,
+        this.bot.on_join_notice
+	    .replace(/{0}/g, channel)
+	    .replace(/{1}/g, sender)
+	    .replace(/{2}/g, login)
+	    .replace(/{3}/g, hostname)
+    );
 }

@@ -1,0 +1,4 @@
+<div xmlns:tal="http://axiomstack.com/tale">
+  <h2>History</h2>
+  <div class="stream" tal:content="this.get_stream()"> </div>
+</div>

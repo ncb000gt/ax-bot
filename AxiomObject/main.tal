@@ -3,7 +3,7 @@
   <body>
     <div class="content">
       <div tal:replace="this.body_header(data)"> </div>
-      <div tal:content="data.content || ((this.body)?this.body(data):(this.content||'No Content Found'))"></div>
+      <div tal:content="data.content || ((this.content && typeof(this.content) == 'function')?this.content(data):(this.body||'No Content Found'))"></div>
     </div>
   </body>
 </html>

@@ -1,0 +1,7 @@
+<div xmlns:tal="http://axiomstack.com/tale">
+  <h2>Services</h2>
+  <h3>Logging</h3>
+  <ul>
+    <li tal:repeat="bucket: this.getChildren()"><a tal:attr="href: bucket.getURI()" tal:content="bucket.id"> </a></li>
+  </ul>
+</div>

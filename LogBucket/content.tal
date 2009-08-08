@@ -1,0 +1,6 @@
+<div xmlns:tal="http://axiomstack.com/tale">
+  <h2>Logs</h2>
+  <ul>
+    <li tal:repeat="log: this.getChildren([], {}, {sort: {created:'asc'}})"><a tal:attr="href: log.getURI()" tal:content="log.id"> </a></li>
+  </ul>
+</div>

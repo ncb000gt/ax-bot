@@ -5,7 +5,7 @@ function init() {
 	hp = new Homepage();
 	hp.id = 'home';
 	hp.title = 'Logging, Trivia, Chat - IRC - AxBot Extraordinare';
-	hp.content = new XHTML('Chattery.');
+	hp.body = new XHTML('Chattery.');
 	root.add(hp);
     }
 
@@ -21,7 +21,7 @@ function init() {
 		</server>
 	    </servers>
 	    </>;
-	first_bot.on_join_notice = "Welcome, {1}, to {0}. This channel is being logged by AxBot by ncb000gt.";
+	first_bot.on_join_notice = "Welcome, {1}, to {0}. This channel is being logged by AxBot. Created by ncb000gt.";
 	hp.add(first_bot);
     }
 }
