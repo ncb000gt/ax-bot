@@ -13,6 +13,7 @@ function process_queue() {
 		}
 		l.log_line(entry.line);
 	    }
+	    log_queue[key].remove(entry); //will remove newly duplicated information, but repeats tend to be bad anyway.
 	}
     }
 }
